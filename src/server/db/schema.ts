@@ -24,11 +24,9 @@ export const createTable = pgTableCreator((name) => `itinerary-companion-app_${n
 export const users = createTable(
   "user",
   {
-    id: serial("id").primaryKey(),
-    username: varchar("name", { length: 256 })
-      .unique(),
-    password: varchar("password", { length: 256 }),
+    userId: varchar("userId", { length: 256 }).primaryKey(),
     city: varchar("city", { length: 256 }),
+
     createdAt: timestamp("created_at", { withTimezone: true })
       .default(sql`CURRENT_TIMESTAMP`)
       .notNull(),
@@ -37,7 +35,7 @@ export const users = createTable(
     ),
   },
   (example) => ({
-    nameIndex: index("name_idx").on(example.username),
+    nameIndex: index("name_idx").on(example.userId),
   })
 );
 
@@ -45,11 +43,12 @@ export const events = createTable(
   "event",
   {
     id: serial("id").primaryKey(),
-    userid: serial("id").references(() => users.id),
-    destination: varchar("name", { length: 256 }),
-    eventYear: date("eventYear"),
-    city: varchar("city", { length: 256 }),
+    userid: varchar("userId", { length: 256 }).references(() => users.userId),
+    destination: varchar("destination", { length: 256 }),
+    startDate: date("startDate"),
+    endDate: date("endDate"),
     travelers: json("travelers"),
+
     createdAt: timestamp("created_at", { withTimezone: true })
       .default(sql`CURRENT_TIMESTAMP`)
       .notNull(),
@@ -66,8 +65,12 @@ export const travelDays = createTable(
   "travelDay",
   {
     id: serial("id").primaryKey(),
-    eventID: serial("id").references(() => events.id),
+    eventId: serial("id").references(() => events.id),
     day: date("day"),
+    morning: json("morning"),
+    afternoon: json("afternoon"),
+    evening: json("evening"),
+
     createdAt: timestamp("created_at", { withTimezone: true })
       .default(sql`CURRENT_TIMESTAMP`)
       .notNull(),
@@ -84,12 +87,12 @@ export const activies = createTable(
   "activity",
   {
     id: serial("id").primaryKey(),
-    eventID: serial("id").references(() => events.id),
-    dayID: serial("id").references(() => travelDays.id),
+    eventId: serial("id").references(() => events.id),
     name: varchar("name", { length: 256 }),
     type: varchar("type", { length: 256 }),
-    location: varchar("city", { length: 256 }),
+    location: varchar("location", { length: 256 }),
     notes: text("notes"),
+
     createdAt: timestamp("created_at", { withTimezone: true })
       .default(sql`CURRENT_TIMESTAMP`)
       .notNull(),
