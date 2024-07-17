@@ -35,7 +35,7 @@ export const users = createTable(
     ),
   },
   (example) => ({
-    nameIndex: index("name_idx").on(example.userId),
+    nameIndex: index("nameUser_idx").on(example.userId),
   })
 );
 
@@ -43,10 +43,10 @@ export const events = createTable(
   "event",
   {
     id: serial("id").primaryKey(),
-    userid: varchar("userId", { length: 256 }).references(() => users.userId),
-    destination: varchar("destination", { length: 256 }),
-    startDate: date("startDate"),
-    endDate: date("endDate"),
+    userid: varchar("userId", { length: 256 }).notNull(),
+    destination: varchar("destination", { length: 256 }).notNull(),
+    startDate: date("startDate").notNull(),
+    endDate: date("endDate").notNull(),
     travelers: json("travelers"),
 
     createdAt: timestamp("created_at", { withTimezone: true })
@@ -57,7 +57,7 @@ export const events = createTable(
     ),
   },
   (example) => ({
-    nameIndex: index("name_idx").on(example.destination),
+    nameIndex: index("nameEvent_idx").on(example.destination),
   })
 );
 
@@ -66,7 +66,7 @@ export const travelDays = createTable(
   {
     id: serial("id").primaryKey(),
     eventId: serial("id").references(() => events.id),
-    day: date("day"),
+    day: date("day").notNull(),
     morning: json("morning"),
     afternoon: json("afternoon"),
     evening: json("evening"),
@@ -79,7 +79,7 @@ export const travelDays = createTable(
     ),
   },
   (example) => ({
-    nameIndex: index("name_idx").on(example.day),
+    nameIndex: index("nameDay_idx").on(example.day),
   })
 );
 
@@ -88,8 +88,8 @@ export const activies = createTable(
   {
     id: serial("id").primaryKey(),
     eventId: serial("id").references(() => events.id),
-    name: varchar("name", { length: 256 }),
-    type: varchar("type", { length: 256 }),
+    name: varchar("name", { length: 256 }).notNull(),
+    type: varchar("type", { length: 256 }).notNull(),
     location: varchar("location", { length: 256 }),
     notes: text("notes"),
 
@@ -101,6 +101,6 @@ export const activies = createTable(
     ),
   },
   (example) => ({
-    nameIndex: index("name_idx").on(example.name),
+    nameIndex: index("nameActiviy_idx").on(example.name),
   })
 );
