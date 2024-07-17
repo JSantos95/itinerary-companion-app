@@ -5,6 +5,8 @@ export type Event = {
     startDate: Date,
     endDate: Date,
     travelers: JSON | null,
+    updatedAt: Date | null;
+    createdAt: Date,
 }
 
 export type TravelDay = {
@@ -14,6 +16,8 @@ export type TravelDay = {
     morning: JSON | null,
     afternoon: JSON | null,
     evening: JSON | null,
+    updatedAt: Date | null;
+    createdAt: Date,
 }
 
 export type Activity = {
@@ -23,4 +27,6 @@ export type Activity = {
     type: string,
     location: string | null,
     notes: string | null,
+    updatedAt: Date | null;
+    createdAt: Date,
 }
