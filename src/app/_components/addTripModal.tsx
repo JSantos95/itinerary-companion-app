@@ -10,7 +10,7 @@ export default function AddTripModal({ id, disableATPopup }: any) {
     const sumbitNewTrip = async () => {
         if (destination == '' || startDate == '' || endDate == '') {
             setErrorLog("Required field cannot be empty");
-        } else if (startDate < endDate) {
+        } else if (startDate > endDate) {
             setErrorLog("Invaild dates selected");
         } else {
             //make query
