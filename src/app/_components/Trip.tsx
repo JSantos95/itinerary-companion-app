@@ -1,15 +1,15 @@
 import { ChangeEvent, FC, useState } from "react";
 import { Event } from "../utilities/types";
 
-export const Trip: FC<Event> = (trip: Event) => {
+export const Trip: FC<Event> = (props) => {
 
     return (
         <div>
             <h4>
-                {trip.destination}
+                {props.destination}
             </h4>
             <p>
-                {trip.startDate.toString()} to {trip.startDate.toString()}
+                {props.startDate.toString()} to {props.startDate.toString()}
             </p>
         </div>
     )

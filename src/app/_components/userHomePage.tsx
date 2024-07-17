@@ -4,11 +4,12 @@ import { useCallback, useEffect, useState } from "react";
 import AddTripModal from "./addTripModal";
 import { getAllUserEvents } from "~/server/db";
 import { Trip } from "./Trip";
+import { Event } from "../utilities/types";
 
 export default function UserHomePage() {
     const { isLoaded, userId } = useAuth();
     const [showATPopup, setShowATPopup] = useState(false);
-    const [userData, setUserData] = useState({});
+    const [userData, setUserData] = useState<Array<Event>>();
 
     useEffect(() => {
         async function getUserTrips() {
@@ -33,15 +34,15 @@ export default function UserHomePage() {
     }, [showATPopup]);
 
     console.log(userData);
-    const listOfUserTrips = userData;
+    const listOfUserTrips = userData?.map(userTrip => <Trip {...userTrip} />);
     return (
         <div>
             <div id="trips" className="flex justify-between">
-                <h2>Trips</h2>
+                <h2 className="">Trips</h2>
                 <button onClick={() => setShowATPopup(true)}>+ Add Trip</button>
             </div>
             {showATPopup && <AddTripModal id={userId} disableATPopup={disableATPopup} />}
-
+            {listOfUserTrips}
         </div>
     );
 }
