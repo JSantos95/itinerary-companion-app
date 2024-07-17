@@ -27,12 +27,11 @@ export const getAllUserEvents = async (id: string) => {
         .where(eq(schema.events.userid, id));
 }
 
-export const addNewEvent = async (id: string, destination: string, startDate: string, endDate: string, travelers?: JSON) => {
+export const addNewEvent = async (id: string, destination: string, startDate: string, endDate: string) => {
     await db.insert(schema.events).values({
         userid: id,
         destination,
         startDate,
         endDate,
-        travelers,
     });
 }

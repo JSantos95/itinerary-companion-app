@@ -1,11 +1,10 @@
 export type Event = {
     id: number,
-    userId: string,
+    userid: string,
     destination: string,
-    startDate: Date,
-    endDate: Date,
-    travelers: JSON | null,
-    updatedAt: Date | null;
+    startDate: string,
+    endDate: string,
+    updatedAt: Date | null,
     createdAt: Date,
 }
 

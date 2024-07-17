@@ -47,7 +47,6 @@ export const events = createTable(
     destination: varchar("destination", { length: 256 }).notNull(),
     startDate: date("startDate").notNull(),
     endDate: date("endDate").notNull(),
-    travelers: json("travelers"),
 
     createdAt: timestamp("created_at", { withTimezone: true })
       .default(sql`CURRENT_TIMESTAMP`)
