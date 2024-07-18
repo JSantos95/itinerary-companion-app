@@ -5,7 +5,7 @@ export const Trip: FC<Event> = (props) => {
 
     return (
         <div className="mb-3">
-            <a href="#" className="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+            <a href="#" className="block max-w-sm p-6 bg-white border border-blue-200 rounded-lg shadow hover:bg-blue-100 dark:bg-blue-600 dark:border-blue-600 dark:hover:bg-blue-800">
                 <p className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                     {props.destination}
                 </p>
