@@ -64,7 +64,7 @@ export const travelDays = createTable(
   "travelDay",
   {
     id: serial("id").primaryKey(),
-    eventId: serial("id").references(() => events.id),
+    eventId: serial("eventId").references(() => events.id),
     day: date("day").notNull(),
     morning: json("morning"),
     afternoon: json("afternoon"),
@@ -86,7 +86,7 @@ export const activies = createTable(
   "activity",
   {
     id: serial("id").primaryKey(),
-    eventId: serial("id").references(() => events.id),
+    eventId: serial("eventId").references(() => events.id),
     name: varchar("name", { length: 256 }).notNull(),
     type: varchar("type", { length: 256 }).notNull(),
     location: varchar("location", { length: 256 }),
