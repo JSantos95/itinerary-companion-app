@@ -49,11 +49,9 @@ export const addNewEvent = async (userid: string, destination: string, startDate
 
         const diffInTime = date2.getTime() - date1.getTime();
         const diffInDays = Math.round(diffInTime / (1000 * 3600 * 24));
-        console.log(diffInDays);
 
         for (let index = 0; index < diffInDays; index++) {
             thisDate.setDate(date1.getDate() + index);
-            console.log("a new day is made: ", thisDate);
             await addNewEventDay(newId, thisDate.toDateString());
         }
     }
