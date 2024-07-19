@@ -33,7 +33,6 @@ export default function UserHomePage() {
         setShowATPopup(false);
     }, [showATPopup]);
 
-    console.log(userData);
     const listOfUserTrips = userData?.map(userTrip => <Trip {...userTrip} />);
     return (
         <div>
