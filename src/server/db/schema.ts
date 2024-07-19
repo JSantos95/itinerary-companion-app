@@ -66,9 +66,9 @@ export const travelDays = createTable(
     id: serial("id").primaryKey(),
     eventId: serial("eventId").references(() => events.id),
     day: date("day").notNull(),
-    morning: json("morning"),
-    afternoon: json("afternoon"),
-    evening: json("evening"),
+    morning: json("morning").default({ morning: [] }),
+    afternoon: json("afternoon").default({ afternoon: [] }),
+    evening: json("evening").default({ evening: [] }),
 
     createdAt: timestamp("created_at", { withTimezone: true })
       .default(sql`CURRENT_TIMESTAMP`)
