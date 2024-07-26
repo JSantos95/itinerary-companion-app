@@ -72,7 +72,7 @@ export const addNewEventDay = async (eId: number, date: string) => {
 }
 
 //ACTIVITY
-export const getDaysActivies = async (eId: number) => {
+export const getEventActivies = async (eId: number) => {
     return await db.select()
         .from(schema.activies)
         .where(eq(schema.activies.eventId, eId));
