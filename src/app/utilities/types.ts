@@ -9,8 +9,8 @@ export type Event = {
 }
 
 export type TravelDay = {
-    id: string,
-    eventId: string,
+    id: number,
+    eventId: number,
     day: Date,
     morning: JSON | null,
     afternoon: JSON | null,
@@ -20,8 +20,8 @@ export type TravelDay = {
 }
 
 export type Activity = {
-    id: string,
-    eventId: string,
+    id: number,
+    eventId: number,
     name: string,
     type: string,
     location: string | null,
