@@ -1,5 +1,5 @@
 import { ChangeEvent, useState } from "react";
-import { addNewActivies, } from "~/server/db";
+import { addNewActivities, } from "~/server/db";
 
 export default function AddActivityModal({ id, disableATPopup }: any) {
     const [name, setName] = useState('');
@@ -10,10 +10,11 @@ export default function AddActivityModal({ id, disableATPopup }: any) {
 
     const sumbitNewTrip = async () => {
         if (name == '' || location == '' || type == '') {
+            console.log(type);
             setErrorLog("Required field cannot be empty");
         } else {
             //make query
-            await addNewActivies(id, name, type, location, notes);
+            await addNewActivities(id, name, type, location, notes);
             disableATPopup();
         }
     }
@@ -33,7 +34,7 @@ export default function AddActivityModal({ id, disableATPopup }: any) {
                             <svg className="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                                 <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
                             </svg>
-                            <span className="sr-only" >Close modal</span>
+                            <span className="sr-only">Close modal</span>
                         </button>
                     </div>
 

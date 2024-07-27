@@ -72,14 +72,14 @@ export const addNewEventDay = async (eId: number, date: string) => {
 }
 
 //ACTIVITY
-export const getEventActivies = async (eId: number) => {
+export const getEventActivities = async (eId: number) => {
     return await db.select()
-        .from(schema.activies)
-        .where(eq(schema.activies.eventId, eId));
+        .from(schema.activities)
+        .where(eq(schema.activities.eventId, eId));
 }
 
-export const addNewActivies = async (eventId: number, name: string, type: string, location?: string, notes?: string) => {
-    await db.insert(schema.activies).values({
+export const addNewActivities = async (eventId: number, name: string, type: string, location?: string, notes?: string) => {
+    await db.insert(schema.activities).values({
         eventId,
         name,
         type,

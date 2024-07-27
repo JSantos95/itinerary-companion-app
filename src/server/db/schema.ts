@@ -82,7 +82,7 @@ export const travelDays = createTable(
   })
 );
 
-export const activies = createTable(
+export const activities = createTable(
   "activity",
   {
     id: serial("id").primaryKey(),
