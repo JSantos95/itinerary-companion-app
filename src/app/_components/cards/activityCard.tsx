@@ -1,8 +1,8 @@
 import { FC } from "react";
-import { Activity as ActivityProps } from "../utilities/types";
+import { Activity as ActivityProps } from "../../utilities/types";
 import Link from "next/link";
 
-export const Activity: FC<ActivityProps> = ({ id, eventId, name, type, location, notes }) => {
+export const ActivityCard: FC<ActivityProps> = ({ id, eventId, name, type, location, notes }) => {
 
     return (
         <div className="mb-3">

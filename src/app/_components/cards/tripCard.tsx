@@ -1,8 +1,8 @@
 import { FC } from "react";
-import { Event } from "../utilities/types";
+import { Event } from "../../utilities/types";
 import Link from "next/link";
 
-export const Trip: FC<Event> = ({ userid, destination, startDate, endDate, id }) => {
+export const TripCard: FC<Event> = ({ userid, destination, startDate, endDate, id }) => {
 
     return (
         <div className="mb-3">

@@ -3,7 +3,7 @@ import { useAuth } from "@clerk/nextjs";
 import { useCallback, useEffect, useState } from "react";
 import AddTripModal from "./addTripModal";
 import { getAllUserEvents } from "~/server/db";
-import { Trip } from "./Trip";
+import { TripCard } from "./cards/tripCard";
 import { Event } from "../utilities/types";
 
 export default function UserHomePage() {
@@ -33,7 +33,7 @@ export default function UserHomePage() {
         setShowATPopup(false);
     }, [showATPopup]);
 
-    const listOfUserTrips = userData?.map(userTrip => <Trip {...userTrip} />);
+    const listOfUserTrips = userData?.map(userTrip => <TripCard {...userTrip} />);
     return (
         <div>
             <div className="w-9/12 mx-auto pt-8">

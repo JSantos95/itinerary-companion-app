@@ -1,15 +1,15 @@
 "use client";
 import { useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
-import { Activity } from "~/app/_components/activity";
+import { ActivityCard } from "~/app/_components/cards/activityCard";
 import AddActivityModal from "~/app/_components/addActivityModal";
 import { DayList } from "~/app/_components/dayList";
-import { Activity as ActivityProps } from "~/app/utilities/types";
+import { Activity } from "~/app/utilities/types";
 import { getEventActivities } from "~/server/db";
 
 export default function EventDetailPage({ params, query }: { params: { id: string }, query: { userid: string, destination: string, startDate: string, endDate: string, id: number } }) {
     const [showAAPopup, setShowAAPopup] = useState(false);
-    const [activitiesList, setActivitiesList] = useState<Array<ActivityProps>>();
+    const [activitiesList, setActivitiesList] = useState<Array<Activity>>();
     const searchParams = useSearchParams();
 
     const disableATPopup = useCallback(() => {
@@ -27,7 +27,7 @@ export default function EventDetailPage({ params, query }: { params: { id: strin
         getActs();
     }, []);
 
-    const activities = activitiesList?.map(act => <Activity {...act} />);
+    const activities = activitiesList?.map(act => <ActivityCard {...act} />);
     return (
         <div className="w-9/12 mx-auto pt-8">
             {/* Heading */}
