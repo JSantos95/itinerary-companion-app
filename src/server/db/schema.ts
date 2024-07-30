@@ -66,9 +66,6 @@ export const travelDays = createTable(
     id: serial("id").primaryKey(),
     eventId: serial("eventId").references(() => events.id),
     day: date("day").notNull(),
-    morning: json("morning").default({ morning: [] }),
-    afternoon: json("afternoon").default({ afternoon: [] }),
-    evening: json("evening").default({ evening: [] }),
 
     createdAt: timestamp("created_at", { withTimezone: true })
       .default(sql`CURRENT_TIMESTAMP`)
@@ -101,5 +98,25 @@ export const activities = createTable(
   },
   (example) => ({
     nameIndex: index("nameActiviy_idx").on(example.name),
+  })
+);
+
+export const dayActivity = createTable(
+  "dayActivity",
+  {
+    id: serial("id").primaryKey(),
+    day: serial("day").references(() => travelDays.id).notNull(),
+    dayTime: varchar("dayTime", { length: 256 }).notNull(),
+    activity: serial("activity").references(() => activities.id).notNull(),
+
+    createdAt: timestamp("created_at", { withTimezone: true })
+      .default(sql`CURRENT_TIMESTAMP`)
+      .notNull(),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).$onUpdate(
+      () => new Date()
+    ),
+  },
+  (example) => ({
+    nameIndex: index("dayMorning_idx").on(example.day),
   })
 );
