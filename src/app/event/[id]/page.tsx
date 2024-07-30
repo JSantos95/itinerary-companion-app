@@ -49,7 +49,7 @@ export default function EventDetailPage({ params, query }: { params: { id: strin
             <div className="flex w-full flex-row gap-y-4 gap-x-5 grid-rows-2">
                 {/* Trip's days */}
                 <div className="w-full">
-                    {/* <DayList eventId={params.id} /> */}
+                    <DayList eventId={params.id} />
                 </div>
                 {/* Activities List */}
                 <div className="w-full">

@@ -12,7 +12,9 @@ export const DayList: FC<Props> = ({ eventId }) => {
     useEffect(() => {
         const getActs = async () => {
             const dbFeedback = await getEventDays(parseInt(eventId));
-            //setDayList(dbFeedback);
+            if (dbFeedback != null) {
+                //setDayList(dbFeedback);
+            }
         }
         getActs();
     }, [])
