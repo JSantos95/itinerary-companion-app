@@ -38,7 +38,7 @@ export default function UserHomePage() {
         <div>
             <div className="w-9/12 mx-auto pt-8">
                 <div id="trips" className="flex pb-2 mb-4 justify-between items-center border-b-2 border-black">
-                    <h2 className="text-xl font-bold">Trips</h2>
+                    <h2 className="text-5xl font-bold">Trips</h2>
                     <button className="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-full" onClick={() => setShowATPopup(true)}>+</button>
                 </div>
                 {listOfUserTrips}
