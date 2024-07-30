@@ -19,7 +19,6 @@ export default function EventDetailPage({ params, query }: { params: { id: strin
     useEffect(() => {
         const getActs = async () => {
             const dbFeedback = await getEventActivities(parseInt(params.id));
-            console.log(dbFeedback);
             if (dbFeedback != null) {
                 setActivitiesList(dbFeedback);
             }
