@@ -1,20 +1,21 @@
-import { ChangeEvent, useState } from "react";
+"use client"
+import { useState } from "react";
 import { addNewActivities, } from "~/server/db";
 
 export default function AddActivityModal({ id, disableATPopup }: any) {
     const [name, setName] = useState('');
     const [location, setLocation] = useState('');
-    const [type, setType] = useState('');
+    const [type, setType] = useState('place');
     const [notes, setNotes] = useState('');
     const [errorLog, setErrorLog] = useState('');
 
     const sumbitNewTrip = async () => {
-        if (name == '' || location == '' || type == '') {
+        if (name == '' || type == '') {
             console.log(type);
             setErrorLog("Required field cannot be empty");
         } else {
             //make query
-            await addNewActivities(id, name, type, location, notes);
+            await addNewActivities(parseInt(id), name, type, location, notes);
             disableATPopup();
         }
     }
@@ -23,9 +24,8 @@ export default function AddActivityModal({ id, disableATPopup }: any) {
         <div id="authentication-modal" tabIndex={-1} aria-hidden="true"
             className="overflow-y-auto overflow-x-hidden backdrop-blur-sm fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
             <div className="relative top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-4 w-full max-w-md max-h-full">
-
+                {/* Heading */}
                 <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
-
                     <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
                         <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
                             Create New Activity
@@ -37,24 +37,24 @@ export default function AddActivityModal({ id, disableATPopup }: any) {
                             <span className="sr-only">Close modal</span>
                         </button>
                     </div>
-
+                    {/* Form */}
                     <div className="p-4 md:p-5">
-                        <form className="space-y-4" action="#">
+                        <div className="space-y-4">
                             <div>
                                 <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
                                 <input type="text" name="name" id="name" value={name} onChange={e => setName(e.target.value)}
                                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                                    placeholder="Tokyo, Japan" required />
+                                    placeholder="Tokyo Tower" required />
                             </div>
                             <div>
                                 <label htmlFor="type" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Type</label>
-                                <select name="type" id="type" value={location} onChange={(e) => setType(e.target.value)}
+                                <select name="type" id="type" value={type} onChange={(e) => setType(e.target.value)}
                                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                                     required>
-                                    <option value="place">Place</option>
-                                    <option value="action">Action</option>
-                                    <option value="restaurant">Restaurant</option>
-                                    <option value="other">Other</option>
+                                    <option value="Place">Place</option>
+                                    <option value="Action">Action</option>
+                                    <option value="Restaurant">Restaurant</option>
+                                    <option value="Other">Other</option>
                                 </select>
                             </div>
                             <div>
@@ -72,10 +72,10 @@ export default function AddActivityModal({ id, disableATPopup }: any) {
                             {errorLog !== "" &&
                                 <div className="block mb-2 text-sm font-medium text-red-700 dark:text-red-400">{errorLog}</div>
                             }
-                            <button type="submit" onClick={sumbitNewTrip} className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                            <button type="button" onClick={sumbitNewTrip} className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                 Create New Trip
                             </button>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
