@@ -64,7 +64,7 @@ export const travelDays = createTable(
   "travelDay",
   {
     id: serial("id").primaryKey(),
-    eventId: serial("eventId").references(() => events.id),
+    eventId: serial("eventId").references(() => events.id, { onDelete: 'cascade' }),
     day: date("day").notNull(),
 
     createdAt: timestamp("created_at", { withTimezone: true })
@@ -83,7 +83,7 @@ export const activities = createTable(
   "activity",
   {
     id: serial("id").primaryKey(),
-    eventId: serial("eventId").references(() => events.id),
+    eventId: serial("eventId").references(() => events.id, { onDelete: 'cascade' }),
     name: varchar("name", { length: 256 }).notNull(),
     type: varchar("type", { length: 256 }).notNull(),
     location: varchar("location", { length: 256 }),
@@ -105,8 +105,8 @@ export const dayActivity = createTable(
   "dayActivity",
   {
     id: serial("id").primaryKey(),
-    day: serial("day").references(() => travelDays.id).notNull(),
-    dayTime: varchar("dayTime", { length: 256 }).notNull(),
+    day: serial("day").references(() => travelDays.id, { onDelete: 'cascade' }).notNull(),
+    dayPeriod: varchar("dayPeriod", { length: 256 }).notNull(),
     activity: serial("activity").references(() => activities.id).notNull(),
 
     createdAt: timestamp("created_at", { withTimezone: true })
