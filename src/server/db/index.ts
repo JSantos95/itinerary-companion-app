@@ -42,19 +42,23 @@ export const addNewEvent = async (userid: string, destination: string, startDate
     //create the days for this event
     const newId = newEvent[0]?.id;
     if (newId != null) {
-        console.log(newId);
         let date1 = new Date(startDate);
         let date2 = new Date(endDate);
-        let thisDate = date1;
+        let thisDate = new Date(startDate);
 
         const diffInTime = date2.getTime() - date1.getTime();
         const diffInDays = Math.round(diffInTime / (1000 * 3600 * 24));
 
-        for (let index = 0; index < diffInDays; index++) {
+        for (let index = 1; index < diffInDays + 2; index++) {
             thisDate.setDate(date1.getDate() + index);
             await addNewEventDay(newId, thisDate.toDateString());
         }
     }
+}
+
+export const removeEvent = async (eventId: number) => {
+    await db.delete(schema.events)
+        .where(eq(schema.events.id, eventId))
 }
 
 //DAY
