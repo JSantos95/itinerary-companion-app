@@ -11,10 +11,7 @@ export type Event = {
 export type TravelDay = {
     id: number,
     eventId: number,
-    day: Date,
-    morning: JSON | null,
-    afternoon: JSON | null,
-    evening: JSON | null,
+    day: string,
     updatedAt: Date | null;
     createdAt: Date,
 }
@@ -26,6 +23,15 @@ export type Activity = {
     type: string,
     location: string | null,
     notes: string | null,
+    updatedAt: Date | null;
+    createdAt: Date,
+}
+
+export type DayActivity = {
+    id: number,
+    day: number,
+    dayPeriod: string,
+    activity: number,
     updatedAt: Date | null;
     createdAt: Date,
 }
