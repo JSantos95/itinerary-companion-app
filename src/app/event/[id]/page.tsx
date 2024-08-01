@@ -24,17 +24,17 @@ export default function EventDetailPage({ params, query }: { params: { id: strin
             }
         }
         getActs();
-    }, []);
+    }, [disableATPopup]);
 
-    const activities = activitiesList?.map(act => <ActivityCard {...act} />);
+    const activities = activitiesList?.map(act => <ActivityCard {...act} key={act.id} />);
     return (
         <div className="w-9/12 mx-auto pt-8">
             {/* Heading */}
             <div className="text-5xl font-extrabold pb-3">
                 {searchParams.get("destination")}
             </div>
-            <div className="text-lg text-gray-800 pb-5">
-                {searchParams.get("startDate")} to {searchParams.get("endDate")}
+            <div className="text-lg font-semibold text-gray-800 pb-5">
+                {searchParams.get("startDate")?.slice(5)} to {searchParams.get("endDate")?.slice(5)}
             </div>
             {/* Titles */}
             <div className="flex flex-row gap-y-4 gap-x-5 grid-rows-2">
