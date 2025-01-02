@@ -35,7 +35,7 @@ export default function UserHomePage() {
 
     const listOfUserTrips = userData?.map(userTrip => <TripCard {...userTrip} />);
     return (
-        <div>
+        <div className="bg-slate-100 pt-10">
             <div className="w-9/12 mx-auto pt-8">
                 <div id="trips" className="flex pb-2 mb-4 justify-between items-center border-b-2 border-black">
                     <h2 className="text-5xl font-bold">Trips</h2>
